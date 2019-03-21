@@ -1,85 +1,119 @@
 class Character < ApplicationRecord
 
   def generate_first_name
-    num = gen_random_num(2)
+    num = gen_random_num(10)
     case num
-    when 1
-      return Faker::Name.first_name
-    when 2
-      return Faker::Games::ElderScrolls.first_name
+    when (1..7)
+      return Faker::Name.first_name #=> "Kaci"
+    when (8..10)
+      return Faker::Games::ElderScrolls.first_name #=> Astrid
     end    
   end
 
   def generate_last_name
-    num = gen_random_num(2)
+    num = gen_random_num(10)
     case num
-    when 1
-      return Faker::Name.first_name
-    when 2
-      return Faker::Games::ElderScrolls.first_name
+    when (1..7)
+      return Faker::Name.last_name #=> "Ernser"
+    when (8..10)
+      return Faker::Games::ElderScrolls.last_name #=> Mallory
     end    
-    #Faker::Games::ElderScrolls.last_name 
-    #Faker::Name.last_name
   end
 
   def generate_alias
-    # Faker::Ancient.god #=> "Zeus"
-    # Faker::Ancient.primordial #=> "Gaia"
-    # Faker::Ancient.titan #=> "Atlas"
-    # Faker::Books::Lovecraft.deity
+    num = gen_random_num(10)
+    case num
+    when (1..2)
+      return Faker::Ancient.god #=> "Zeus"
+    when (3..4)
+      return Faker::Ancient.primordial #=> "Gaia"
+    when (5..8)
+      return Faker::Ancient.titan #=> "Atlas" 
+    when (9..10)
+      return Faker::Books::Lovecraft.deity #=> "Shub-Niggurath"
+    end    
   end
 
   def generate_motto
-    #Faker::GreekPhilosophers.quote #=> "Only the educated are free."
-    #Faker::Marketing.buzzwords #=> "rubber meets the road", "sprint to the finish line"
-    #Faker::Books::Dune.saying #=> "You do not beg the sun for mercy."
-    #Faker::Games::Dota.quote #=> "Easy now, this stuff is explosive!"
-    #Faker::Games::Fallout.quote #=> "Democracy is non-negotiable"
-    #Faker::Games::HeroesOfTheStorm.quote #=> "MEAT!!!"
-    #Faker::Games::Witcher.quote # => "No Lollygagin'!"
-    #Faker::Games::LeagueOfLegends.quote #=> "Purge the unjust."
-    #Faker::Games::WorldOfWarcraft.quote #=> "These are dark times indeed."
-    #Faker::TvShows::TwinPeaks.quote #=> "The owls are not what they seem."
-    #Faker::TvShows::VentureBros.quote #=> "Revenge like gazpacho soup, is best served cold, precise and merciless."
-
-
+    num = gen_random_num(20)
+    case num
+    when (1)
+      return Faker::Marketing.buzzwords #=> "rubber meets the road", "sprint to the finish line"
+    when (2..3)
+      return Faker::Books::Dune.saying #=> "You do not beg the sun for mercy."
+    when (4..5)
+      return Faker::GreekPhilosophers.quote #=> "Only the educated are free."
+    when (6..7)
+      return Faker::Games::Dota.quote #=> "Easy now, this stuff is explosive!"
+    when (8..9)
+      return Faker::Games::Fallout.quote #=> "Democracy is non-negotiable"
+    when (10..11)
+      return Faker::Games::HeroesOfTheStorm.quote #=> "MEAT!!!"
+    when (12..13)
+      return Faker::Games::Witcher.quote # => "No Lollygagin'!"
+    when (14..15)
+      return Faker::Games::LeagueOfLegends.quote #=> "Purge the unjust."
+    when (16..17)
+      return Faker::Games::WorldOfWarcraft.quote #=> "These are dark times indeed."
+    when (18..19)
+      return Faker::TvShows::TwinPeaks.quote #=> "The owls are not what they seem."
+    when (19..20)
+      return Faker::TvShows::VentureBros.quote #=> "Revenge like gazpacho soup, is best served cold, precise and merciless."
+    end    
   end
 
   def generate_species
-    #Faker::Games::ElderScrolls.creature
-    #Faker::Games::Myst.creature #=> "squee"
-    #Faker::Games::Witcher.monster # => "Katakan"
-
-    
+     num = gen_random_num(10)
+    case num
+    when (1..3)
+      return Faker::Games::ElderScrolls.creature
+    when (4..6)
+      return Faker::Games::Myst.creature #=> "squee"
+    when (6..10)
+      return Faker::Games::Witcher.monster # => "Katakan"
+    end      
   end
 
   def generate_bio
-    #from...
-    #Faker::Games::HeroesOfTheStorm.battleground#=> "Towers of Doom"
-    #Faker::Cosmere.shard_world
-    #Faker::Space.meteorite #=> "Ensisheim"
-    #Faker::Books::CultureSeries.planet
-    #Faker::Books::Dune.planet #=> "Caladan"
-    #Faker::Books::Lovecraft.location #=> "Kingsport"
-    #Faker::Games::LeagueOfLegends.location
-    #
+    from, marital_status, food, food_type, realtonship, relationship_type, mood = ''
 
-    #marital status
-    # Faker::Demographic.marital_status #=> "Widowed"
+    mood = ['happily', 'begrudingly', 'reluctantly'].sample
+    food_type = ['loves', 'hates', 'alergic to', 'creator of the', 'is partial to a', 'addicted to', 'makes a mean'].sample
+    relationship_type = ['a very close', 'a strangely erotic', 'an icy', 'a happy', 'a complicated', 'a bad', "a 'special'", 'a jovial'].sample
+    marital_status = Faker::Demographic.marital_status #=> "Widowed"
+    food = Faker::Food.dish #=> "Caesar Salad"
 
-    #loves to eat...
-    #Faker::Food.dish #=> "Caesar Salad"
+    num = gen_random_num(10)
+    case num
+      when (1..2)
+        [from = Faker::Games::HeroesOfTheStorm.battleground #=> "Towers of Doom"]
+      when (3..4)
+        from =  Faker::Cosmere.shard_world #=> "Yolen"
+      when (4..5)
+        from = Faker::Books::CultureSeries.planet #=> "Xinth"
+      when (5..6)
+        from = Faker::Books::Dune.planet #=> "Caladan"
+      when (6..8)
+        from = Faker::Books::Lovecraft.location #=> "Kingsport"
+      when (9..10)
+        from = Faker::Games::LeagueOfLegends.location  #=> "Demacia"
+    end  
 
+    num = gen_random_num(5)
+    case num
+      when 1
+        realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
+      when 2
+        realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
+      when 3
+        realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
+      when 4
+        realtonship = Faker::Relationship.in_law #=> "Father-in-law"
+      when 5
+        realtonship = Faker::Relationship.sibling #=> "Sister" or "Brother"
+    end  
 
-    #had a [great, poor, wierd ] realtonship with:
-    #Faker::Relationship.familial #=> "Mother" or "Grandmother"
-    # Faker::Relationship.familial('direct') #=> "Mother" or "Brother"
-    # Faker::Relationship.familial('extended') #=> "Grandmother" or "Niece" or "Aunt"
-    # Faker::Relationship.spouse #=> "Husband" or "Wife"
-    # Faker::Relationship.parent #=> "Father" or "Mother"
-    # Faker::Relationship.in_law #=> "Father-in-law"
-    # Faker::Relationship.sibling #=> "Sister" or "Brother"
-    
+    "Originating from #{from}. #{mood.capitalize} #{marital_status.downcase}. #{food_type.capitalize} #{food}. Has #{relationship_type} relationship with their #{realtonship.downcase}."
   end
 
   def generate_alignment
@@ -87,11 +121,12 @@ class Character < ApplicationRecord
     alignment ==  'neutral neutral' ?  'true neutral' :  alignment
   end
 
-  def generate_traits
-    #Faker::Educator.subject #=> "Criminology"
-    #Faker::Job.key_skill #=> "Teamwork"
-    #Faker::Games::Heroes.specialty #=> "Ballista"
-    
+  def generate_traits_positive
+    ['charming'].sample(3)
+  end
+
+  def generate_traits_negative
+    ['charming'].sample(3)
   end
 
 
