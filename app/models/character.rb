@@ -1,5 +1,23 @@
 class Character < ApplicationRecord
 
+  #Generate an entirely random character
+  def self.generate_full_character
+    new_character = Character.new
+    new_character.first_name = new_character.generate_first_name
+    new_character.last_name = new_character.generate_last_name
+    new_character.alias = new_character.generate_alias
+    new_character.motto = new_character.generate_motto
+    new_character.species = new_character.generate_species
+    new_character.bio = new_character.generate_bio
+    new_character.alignment = new_character.generate_alignment
+    new_character.traits_positive = "#{new_character.generate_trait_positive}, #{new_character.generate_trait_positive}, #{new_character.generate_trait_positive}"
+    new_character.traits_negative = "#{new_character.generate_trait_negative}, #{new_character.generate_trait_negative}, #{new_character.generate_trait_negative}"
+    new_character.age = new_character.generate_age
+    new_character.status = new_character.generate_status
+    new_character.gender = new_character.generate_gender
+    new_character.save
+  end
+
   def generate_first_name
     num = gen_random_num(10)
     case num
@@ -126,8 +144,9 @@ class Character < ApplicationRecord
     ].sample
   end
 
-  def generate_traits_negative
-    ['abrasive', 'aggressive', 'aimless', 'angry', 'anxious', 'arrogant', 'belligerent', 'bitchy', 'blunt', 'boorish', 'boring', 'callous', 'calculating', 'careless', 'caustic', 'charmless', 'cold', 'course', 'compulsive', 'conceited', 'cowardly', 'crafty', 'crazy', 'cruel', 'cunning', 'deceitful', 'demanding', 'dependant', 'desperate', 'destructive', 'detached', 'difficult', 'dishonest', 'disloyal', 'disobedient', 'disruptive', 'dogmatic', 'dull', 'envious', 'erratic', 'extreme', 'fanatical', 'foolish', 'forgetful', 'fussy', 'gloomy', 'greedy', 'grim', 'grumpy', 'gullible', 'harsh', 'hateful', 'hostile', 'hesitant', 'ignorant', 'impatient', 'impractical', 'impulsive', 'inconsiderate', 'indecisive', 'inflexible', 'inhibited', 'insecure', 'insensitive', 'insulting', 'incredibly racist', 'irresponsible', 'jealous', 'judgemental', 'a killjoy', 'lazy', 'malicious', 'materialistic', 'mean', 'melodramatic', 'miserable', 'moody', 'narcissistic', 'narrow-minded', 'nasty', 'neglectful', 'gassy', 'foul-smelling', 'neurotic', 'obnoxious', 'obsessive', 'outrageous', 'paranoid', 'passive', 'pathetic', 'patronising', 'perverted', 'petty', 'pessimistic', 'petulant', 'picky', 'pompous', 'predatory', 'predujuced', 'pretentious', 'puritanical', 'quick-tempered', 'rigid', 'rude', 'ruthless', 'sadistic', 'sanctimonious', 'self-indulgent', 'selfish', 'shameless', 'slovenly', 'sly', 'sneaky', 'sordid', 'stingy', 'stubborn', 'stupid', 'superficial', 'surly', 'tactless', 'tasteless', 'temperamental', 'tense', 'thoughtless', 'touchy', 'truculent', 'uncaring', 'unreliable', 'unruly', 'untidy', 'a total slob', 'vain', 'vengeful', 'vindictive', 'weak', 'wilful', 'withdrawn'].sample(1)
+  def generate_trait_negative
+    ['abrasive', 'aggressive', 'aimless', 'angry', 'anxious', 'arrogant', 'belligerent', 'bitchy', 'blunt', 'boorish', 'boring', 'callous', 'calculating', 'careless', 'caustic', 'charmless', 'cold', 'course', 'compulsive', 'conceited', 'cowardly', 'crafty', 'crazy', 'cruel', 'cunning', 'deceitful', 'demanding', 'dependant', 'desperate', 'destructive', 'detached', 'difficult', 'dishonest', 'disloyal', 'disobedient', 'disruptive', 'dogmatic', 'dull', 'envious', 'erratic', 'extreme', 'fanatical', 'foolish', 'forgetful', 'fussy', 'gloomy', 'greedy', 'grim', 'grumpy', 'gullible', 'harsh', 'hateful', 'hostile', 'hesitant', 'ignorant', 'impatient', 'impractical', 'impulsive', 'inconsiderate', 'indecisive', 'inflexible', 'inhibited', 'insecure', 'insensitive', 'insulting', 'incredibly racist', 'irresponsible', 'jealous', 'judgemental', 'a killjoy', 'lazy', 'malicious', 'materialistic', 'mean', 'melodramatic', 'miserable', 'moody', 'narcissistic', 'narrow-minded', 'nasty', 'neglectful', 'gassy', 'foul-smelling', 'neurotic', 'obnoxious', 'obsessive', 'outrageous', 'paranoid', 'passive', 'pathetic', 'patronising', 'perverted', 'petty', 'pessimistic', 'petulant', 'picky', 'pompous', 'predatory', 'predujuced', 'pretentious', 'puritanical', 'quick-tempered', 'rigid', 'rude', 'ruthless', 'sadistic', 'sanctimonious', 'self-indulgent', 'selfish', 'shameless', 'slovenly', 'sly', 'sneaky', 'sordid', 'stingy', 'stubborn', 'stupid', 'superficial', 'surly', 'tactless', 'tasteless', 'temperamental', 'tense', 'thoughtless', 'touchy', 'truculent', 'uncaring', 'unreliable', 'unruly', 'untidy', 'a total slob', 'vain', 'vengeful', 'vindictive', 'weak', 'wilful', 'withdrawn'
+    ].sample
   end
 
 
@@ -144,7 +163,7 @@ class Character < ApplicationRecord
   end
 
   def generate_status
-    ['Alive', 'Dead', 'MIA', 'Unknown', 'Exiled', 'Coma', 'Dormant'].sample
+    ['Alive', 'MIA', 'Unknown', 'Exiled', 'Coma', 'Dormant'].sample
   end
 
   def generate_gender
@@ -162,4 +181,6 @@ class Character < ApplicationRecord
   def gen_random_num(limit)
     (1..limit).to_a.sample
   end
+
+  
 end
