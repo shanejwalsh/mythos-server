@@ -86,7 +86,7 @@ class Character < ApplicationRecord
     num = gen_random_num(10)
     case num
       when (1..2)
-        [from = Faker::Games::HeroesOfTheStorm.battleground #=> "Towers of Doom"]
+        from = Faker::Games::HeroesOfTheStorm.battleground #=> "Towers of Doom"]
       when (3..4)
         from =  Faker::Cosmere.shard_world #=> "Yolen"
       when (4..5)
@@ -121,8 +121,9 @@ class Character < ApplicationRecord
     alignment ==  'neutral neutral' ?  'true neutral' :  alignment
   end
 
-  def generate_traits_positive
-    ['charming'].sample(3)
+  def generate_trait_positive
+    ['accessible', 'adaptable', 'adventuros', 'affable', 'affectionate', 'agreeable', 'ambitious', 'amicable', 'amusing', 'articulate', 'good sense of balance', 'benevolent', 'brave', 'bright', 'brilliant', 'broad-minded', 'capable', 'captivating', 'careful', 'caring', 'charming', 'clear-headed', 'clever', 'compassionate', 'confident', 'conscientious', 'considerate', 'courageous', 'courteous', 'creative', 'curious', 'daring', 'decent', 'dependable', 'determined', 'dignified', 'diligent', 'diplomatic', 'disciplined', 'discreet', 'easy-going','educated', 'efficient', 'eloquent', 'empathetic', 'encouraging', 'energetic', 'exuberant', 'fair', 'faithful', 'firm', 'flexible', 'focused', 'forgiving', 'frank', 'friendly', 'funny', 'generous', 'gentle', 'genuine', 'gracious', 'gregarious', 'hard-working', 'helpful', 'heroic', 'honest', 'humble', 'humorous', 'idealistic', 'imaginative', 'impartial', 'incisive', 'independent', 'innovative', 'insightful', 'intelligent', 'intuitive', 'inventive', 'keen', 'kind', 'liberal', 'logical', 'lovable', 'loyal', 'magnanimous', 'mature', 'meticulous', 'modest', 'neat', 'non-authoritarian', 'obedient', 'objective', 'open', 'optimistic', 'orderly', 'organised', 'passionate', 'patient', 'peaceful', 'perceptive', 'persistent', 'personable', 'persuasive','pioneering', 'plucky', 'polite', 'powerful', 'practical', 'precise', 'principled', 'profound', 'protective', 'prudent','punctual','quick-witted', 'quiet', 'rational', 'relaxed','reliable', 'reserved', 'resourceful', 'responsible', 'romantic', 'scrupulous', 'secure', 'self-confident', 'self-disciplined', 'selfless', 'sensible', 'sensitive', 'shy', 'sincere', 'skillful', 'sociable', 'spontaneous', 'sporting', 'stable', 'steadfast', 'stoic' ,'suave','well endowed', 'subtle', 'sympathetic', 'tasteful', 'through', 'thoughtful', 'tidy', 'tolerant', 'tough', 'unassuming', 'understanding', 'versatile', 'vivacious', 'warm', 'well-read','willing', 'wise', 'witty'
+    ].sample
   end
 
   def generate_traits_negative
