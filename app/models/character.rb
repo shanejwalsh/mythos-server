@@ -16,6 +16,7 @@ class Character < ApplicationRecord
     new_character.age = generate_age
     new_character.status = generate_status
     new_character.gender = generate_gender
+    new_character.feats = generate_feats
     new_character.save
   end
 end

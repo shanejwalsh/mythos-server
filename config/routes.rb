@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get '/generate/age', to: 'generators#age'
       get '/generate/status', to: 'generators#status'
       get '/generate/gender', to: 'generators#gender'
+      get '/generate/feats', to: 'generators#feats'
     end
   end
 end

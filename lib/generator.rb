@@ -35,6 +35,7 @@ module Generator
     end    
   end
 
+
   def generate_motto
     num = gen_random_num(20)
     case num
@@ -63,6 +64,8 @@ module Generator
     end    
   end
 
+
+
   def generate_species
      num = gen_random_num(10)
     case num
@@ -84,21 +87,23 @@ module Generator
     marital_status = Faker::Demographic.marital_status #=> "Widowed"
     food = Faker::Food.dish #=> "Caesar Salad"
 
-    num = gen_random_num(10)
-    case num
-      when (1..2)
-        from = Faker::Games::HeroesOfTheStorm.battleground #=> "Towers of Doom"]
-      when (3..4)
-        from =  Faker::Cosmere.shard_world #=> "Yolen"
-      when (4..5)
-        from = Faker::Books::CultureSeries.planet #=> "Xinth"
-      when (5..6)
-        from = Faker::Books::Dune.planet #=> "Caladan"
-      when (6..8)
-        from = Faker::Books::Lovecraft.location #=> "Kingsport"
-      when (9..10)
-        from = Faker::Games::LeagueOfLegends.location  #=> "Demacia"
-    end  
+    # num = gen_random_num(10)
+    # case num
+    #   when (1..2)
+    #     from = Faker::Games::HeroesOfTheStorm.battleground #=> "Towers of Doom"]
+    #   when (3..4)
+    #     from =  Faker::Cosmere.shard_world #=> "Yolen"
+    #   when (4..5)
+    #     from = Faker::Books::CultureSeries.planet #=> "Xinth"
+    #   when (5..6)
+    #     from = Faker::Books::Dune.planet #=> "Caladan"
+    #   when (6..8)
+    #     from = Faker::Books::Lovecraft.location #=> "Kingsport"
+    #   when (9..10)
+    #     from = Faker::Games::LeagueOfLegends.location  #=> "Demacia"
+    # end   
+
+    from = generate_place
 
     num = gen_random_num(5)
     case num
@@ -116,6 +121,24 @@ module Generator
 
     "Originating from #{from}. #{mood.capitalize} #{marital_status.downcase}. #{food_type.capitalize} #{food}. Has #{relationship_type} relationship with their #{realtonship.downcase}."
   end
+
+    def generate_place
+          num = gen_random_num(10)
+    case num
+      when (1..2)
+        return Faker::Games::HeroesOfTheStorm.battleground #=> "Towers of Doom"]
+      when (3..4)
+        return Faker::Cosmere.shard_world #=> "Yolen"
+      when (4..5)
+        return Faker::Books::CultureSeries.planet #=> "Xinth"
+      when (5..6)
+        return Faker::Books::Dune.planet #=> "Caladan"
+      when (6..8)
+        return Faker::Books::Lovecraft.location #=> "Kingsport"
+      when (9..10)
+        return Faker::Games::LeagueOfLegends.location  #=> "Demacia"
+      end 
+    end
 
   def generate_alignment
     alignment = ['chaotic', 'neutral', 'lawful'].sample + ' ' + ['good', 'neutral', 'evil'].sample
@@ -146,7 +169,13 @@ module Generator
   end
 
   def generate_status
-    ['Alive', 'MIA', 'Unknown', 'Exiled', 'Coma', 'Dormant'].sample
+    num = gen_random_num(10)
+      case num
+        when (1..7)
+          return ['Alive'].sample
+        when (8..10)
+        return ['MIA', 'Unknown', 'Exiled', 'Comatose', 'Dormant'].sample
+      end 
   end
 
   def generate_gender
@@ -160,6 +189,25 @@ module Generator
       return ['Other'].sample
     end
   end
+
+
+  def generate_feats 
+
+    num = gen_random_num(2)
+
+    achievement = ['destroyer', 'champion', 'ruler', 'defeater', 'overlord', 'slayer', 'champion', 'player', 'butcher', 'hero', ].sample
+
+    people = generate_species
+
+    place = generate_place
+
+      case num
+      when 1
+        return "#{achievement.capitalize} of the #{people}s"
+      when 2
+        return "#{achievement.capitalize} of #{place}" 
+      end 
+  end 
 
   def gen_random_num(limit)
     (1..limit).to_a.sample

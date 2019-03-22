@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_143206) do
+ActiveRecord::Schema.define(version: 2019_03_21_195439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_03_21_143206) do
     t.string "gender"
     t.string "traits_positive"
     t.string "traits_negative"
+    t.string "feats"
   end
 
 end
