@@ -1,6 +1,10 @@
 class Api::V1::GeneratorsController < ApplicationController
     include Generator
 
+    def full_character
+      render json: generate_full_character
+    end
+
     def first_name
       render json: {first_name: generate_first_name}
     end

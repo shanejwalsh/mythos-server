@@ -1,5 +1,23 @@
 module Generator 
   extend ActiveSupport::Concern
+
+  def generate_full_character
+    new_character = {
+      first_name: generate_first_name,
+      last_name: generate_last_name,
+      alias: generate_alias,
+      motto: generate_motto,
+      species: generate_species,
+      bio: generate_bio,
+      alignment: generate_alignment,
+      traits_positive: "#{generate_trait_positive}, #{generate_trait_positive}, #{generate_trait_positive}",
+      traits_negative: "#{generate_trait_negative}, #{generate_trait_negative}, #{generate_trait_negative}",
+      age:generate_age,
+      status: generate_status,
+      gender: generate_gender,
+      feats: generate_feats
+    }
+  end
   
   def generate_first_name
     num = gen_random_num(10)
