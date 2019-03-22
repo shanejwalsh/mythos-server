@@ -65,8 +65,5 @@ class Api::V1::CharactersController < ApplicationController
             :traits_negative,
             :feats
         )
-
     end 
-
-
 end
