@@ -1,14 +1,46 @@
 class Api::V1::CharactersController < ApplicationController
-    before_action :find_character, only: [:show]
+    before_action :find_character, only: [:show, :destroy]
 
     def index
         @characters = Character.all
         render json: @characters
     end
 
+
     def show
         render json: @character
+
     end
+
+    def new
+        @character = Character.new
+        render json: @character
+    end 
+
+    def create
+        @character = Character.new
+            @character.update(character_params)
+
+            if @character.save 
+             render json: @character  
+            else 
+             render json: {error:"Character cannot be created"}, status: 400
+            end 
+    end 
+
+    def edit 
+    end 
+
+    def update
+    end
+
+
+    def destroy
+        @character.destroy
+        render json: @character
+    end
+
+
 
     private 
 
@@ -16,6 +48,25 @@ class Api::V1::CharactersController < ApplicationController
         @character = Character.find_by(id: params[:id])
         render json: {error:"Character with id #{params[:id]} not found"}, status: 404 unless @character
     end
+
+    def character_params
+        params.require(:character).permit(
+            :first_name,
+            :last_name,
+            :alias,
+            :motto,
+            :species,
+            :bio,
+            :alignment,
+            :age,
+            :status,
+            :gender,
+            :traits_positive,
+            :traits_negative,
+            :feats
+        )
+
+    end 
 
 
 end
