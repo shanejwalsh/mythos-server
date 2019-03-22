@@ -37,4 +37,7 @@ class Api::V1::GeneratorsController < ApplicationController
     def gender
       render json: {gender: generate_gender}
     end
+    def feats
+      render json: {feats: generate_feats}
+    end
 end

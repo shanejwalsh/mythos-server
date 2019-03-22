@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :characters, only: [:index, :show]
+      resources :characters, only: [:index, :show, :new, :create, :destroy]
 
       get '/generate/first_name', to: 'generators#first_name'
       get '/generate/last_name', to: 'generators#last_name'
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get '/generate/age', to: 'generators#age'
       get '/generate/status', to: 'generators#status'
       get '/generate/gender', to: 'generators#gender'
+      get '/generate/feats', to: 'generators#feats'
     end
   end
 end
