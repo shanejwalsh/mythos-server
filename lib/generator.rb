@@ -64,15 +64,8 @@ module Generator
   end
 
   def generate_species
-     num = gen_random_num(10)
-    case num
-    when (1..3)
-      return Faker::Games::ElderScrolls.creature
-    when (4..6)
-      return Faker::Games::Myst.creature #=> "squee"
-    when (6..10)
-      return Faker::Games::Witcher.monster # => "Katakan"
-    end      
+    ['werewolf', 'human', 'elf', 'orc', 'gnome', 'halfling', 'centaur', 'lizard folk', 'goblin', 'giant', 'troll', 'frost troll', 'wood elf', 'vampire', 'mermaid', 'nymph', 'ogre', 'dwarf', 'leprechaun', 'banshee'
+    ].sample
   end
 
   def generate_bio
@@ -150,15 +143,7 @@ module Generator
   end
 
   def generate_gender
-    num = gen_random_num(10)
-    case num
-    when (1..7)
-      return ['Male', 'Female'].sample
-    when (8..9)
-      return ['Unknown'].sample
-    when 10
-      return ['Other'].sample
-    end
+    ['male', 'female'].sample
   end
 
   def gen_random_num(limit)
