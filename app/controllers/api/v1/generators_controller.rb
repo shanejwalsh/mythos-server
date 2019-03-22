@@ -38,6 +38,6 @@ class Api::V1::GeneratorsController < ApplicationController
       render json: {gender: generate_gender}
     end
     def feats
-      render json: generate_feats
+      render json: {feats: generate_feats}
     end
 end

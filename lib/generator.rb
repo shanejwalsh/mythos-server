@@ -85,23 +85,7 @@ module Generator
     food_type = ['loves', 'hates', 'alergic to', 'creator of the', 'is partial to a', 'addicted to', 'makes a mean'].sample
     relationship_type = ['a very close', 'a strangely erotic', 'an icy', 'a happy', 'a complicated', 'a bad', "a 'special'", 'a jovial'].sample
     marital_status = Faker::Demographic.marital_status #=> "Widowed"
-    food = Faker::Food.dish #=> "Caesar Salad"
-
-    # num = gen_random_num(10)
-    # case num
-    #   when (1..2)
-    #     from = Faker::Games::HeroesOfTheStorm.battleground #=> "Towers of Doom"]
-    #   when (3..4)
-    #     from =  Faker::Cosmere.shard_world #=> "Yolen"
-    #   when (4..5)
-    #     from = Faker::Books::CultureSeries.planet #=> "Xinth"
-    #   when (5..6)
-    #     from = Faker::Books::Dune.planet #=> "Caladan"
-    #   when (6..8)
-    #     from = Faker::Books::Lovecraft.location #=> "Kingsport"
-    #   when (9..10)
-    #     from = Faker::Games::LeagueOfLegends.location  #=> "Demacia"
-    # end   
+    food = Faker::Food.dish #=> "Caesar Salad"  
 
     from = generate_place
 
