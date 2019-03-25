@@ -72,7 +72,8 @@ class Api::V1::CharactersController < ApplicationController
             :gender,
             :traits_positive,
             :traits_negative,
-            :feats
+            :feats,
+            :sprite_data
         )
     end 
 end
