@@ -41,7 +41,7 @@ class Api::V1::CharactersController < ApplicationController
 
 
 
-    end\
+    end
 
 
     def destroy
