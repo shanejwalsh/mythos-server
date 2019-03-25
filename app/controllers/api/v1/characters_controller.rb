@@ -38,9 +38,6 @@ class Api::V1::CharactersController < ApplicationController
              render json: {error:"Character cannot be updated"}, status: 400
             end 
         else
-
-
-
     end
 
 
@@ -74,7 +71,8 @@ class Api::V1::CharactersController < ApplicationController
             :traits_positive,
             :traits_negative,
             :feats,
-            :sprite_data
+            :sprite_data,
+            :user_id
         )
     end 
 end
