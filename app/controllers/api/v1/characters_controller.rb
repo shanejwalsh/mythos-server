@@ -1,5 +1,5 @@
 class Api::V1::CharactersController < ApplicationController
-    before_action :find_character, only: [:show, :destroy]
+    before_action :find_character, only: [:show, :destroy, :update]
 
     def index
         @characters = Character.all
@@ -32,7 +32,16 @@ class Api::V1::CharactersController < ApplicationController
     end 
 
     def update
-    end
+         if @character.update(character_params)
+             render json: @character  
+            else 
+             render json: {error:"Character cannot be updated"}, status: 400
+            end 
+        else
+
+
+
+    end\
 
 
     def destroy
