@@ -60,6 +60,7 @@ class Api::V1::CharactersController < ApplicationController
 
     def character_params
         params.require(:character).permit(
+            :id,
             :first_name,
             :last_name,
             :alias,
