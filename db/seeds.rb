@@ -6,7 +6,7 @@ User.create([
 ])
 
 # uncomment below to build x fake characters
-50.times do
+100.times do
   Character.build_full_character
 end
 
