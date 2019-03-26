@@ -7,6 +7,33 @@ class Api::V1::UsersController < ApplicationController
         render json: @users
     end 
 
+    def login
+      @user = User.find_by(username: params[:username])
+      if @user && @user.authenticate(params[:password])
+        render json: {username: @user.username, token: issue_token({id: @user.id})}
+      else
+        render json: {error: "Username/password combination invalid."}, status: 401
+      end
+    end
+  
+  def validate
+    @user = get_current_user
+    if @user
+      render json: {username: @user.username, token: issue_token({id: @user.id})}
+    else
+      render json: {error: "Username/password combination invalid."}, status: 401
+    end
+  end
+
+  def get_characters
+    @user = get_current_user
+    if @user
+      render json: @user.characters
+    else
+      render json: {error: "Not a valid user."}, status: 401
+    end
+  end
+
     def create
         byebug
         @user = User.new(user_params)
