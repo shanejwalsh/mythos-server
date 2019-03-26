@@ -153,7 +153,7 @@ module Generator
     childhood2 = ["grew up always wanting to be a soldier", "always knew #{he_or_she} was destined for greatness", "had a romantic connection in #{his_or_her} adolescent years, which deeply influenced #{his_or_her} personality"].sample
 
 
-    fact = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age"].shuffle
+    fact = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age", "feels the need for seed", "can take only shit whilst completely naked"].shuffle
     fact1 = fact[0]
     fact2 = fact[1]
     fact3 = fact[3]
