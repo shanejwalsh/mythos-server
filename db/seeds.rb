@@ -1,5 +1,6 @@
 # create 2 'dummy' users
 User.create([
+  {username: '@guest', password: ''}, 
   {username: '@camacho', password: 'password'}, 
   {username: '@walsh', password: 'password'}
 ])

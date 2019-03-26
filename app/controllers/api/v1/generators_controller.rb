@@ -26,11 +26,11 @@ class Api::V1::GeneratorsController < ApplicationController
     def alignment
       render json: {alignment: generate_alignment}
     end
-    def trait_positive
-      render json: {trait_positive: generate_trait_positive}
+    def traits_positive
+      render json: {traits_positive: "#{generate_trait_positive}, #{generate_trait_positive}, #{generate_trait_positive}"}
     end
-    def trait_negative
-      render json: {trait_negative: generate_trait_negative}
+    def traits_negative
+      render json: {traits_negative: "#{generate_trait_negative}, #{generate_trait_negative}, #{generate_trait_negative}"}
     end
     def age
       render json: {age: generate_age}
