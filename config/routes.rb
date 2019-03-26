@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :characters, only: [:index, :show, :new, :create, :destroy, :update]
+      resources :users, only: [:index, :create]
 
       get '/generate/full_character', to: 'generators#full_character'
       get '/generate/first_name', to: 'generators#first_name'
