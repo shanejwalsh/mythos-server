@@ -6,7 +6,6 @@ module Generator
       alias: generate_alias,
       motto: generate_motto,
       species: generate_species,
-      bio: generate_bio,
       alignment: generate_alignment,
       traits_positive: "#{generate_trait_positive}, #{generate_trait_positive}, #{generate_trait_positive}",
       traits_negative: "#{generate_trait_negative}, #{generate_trait_negative}, #{generate_trait_negative}",
@@ -18,6 +17,7 @@ module Generator
     new_character[:first_name] = generate_first_name(new_character[:species],new_character[:gender])
     new_character[:last_name] = generate_last_name(new_character[:species])
     new_character[:sprite_data] = generate_sprite(new_character[:species])
+    new_character[:bio] = generate_bio(new_character[:first_name], new_character[:last_name], new_character[:gender], new_character[:age])
     return new_character
   end
 
@@ -29,7 +29,7 @@ module Generator
     halfling_m_names = ["Adalgrim", "Adelard", "Alton", "Andwise", "Anson", "Balbo", "Bandobras", "Beau", "Bill", "Bingo", "Bodo", "Bolger", "Bungo", "Cade", "Calkin", "Cotman", "Cottar", "Drogo", "Dudo", "Eldon", "Falco", "Fastolph", "Filibert", "Flambard", "Fosco", "Garret", "Genrill", "Griffo", "Halfred", "Hildigrim", "Hob", "Holman", "Kepli", "Largo", "Longo", "Lotho", "Lyle", "Milo", "Minto", "Morro", "Mosco", "Mungo", "Odo", "Olo", "Osborn", "Otho", "Paldo", "Peregrin", "Pervince", "Pimpernell", "Polo", "Ponto", "Porto", "Posco", "Ronald", "Rorimac", "Roscoe", "Rufus", "Sam", "Sancho", "Saradac", "Seredoc", "Theadric", "Tolman", "Wellby", "Wilcome"]
     halfling_f_names = ["Adaldrida", "Amranth", "Amaryllis", "Angelica", "Aspodel", "Belba", "Belladonna", "Berylla", "Camellia", "Carissa", "Celandine", "Charmaine", "Cora", "Crystal", "Daisy", "Diamond", "Donamira", "Dora", "Eglantine", "Elanor", "Esmerelda", "Euphemia", "Gilly", "Gwiston", "Hilda", "Jillian", "Lavinia", "Lily", "Lidda", "Lobelia", "Malva", "Marigold", "May", "Melindy", "Mentha", "Merla", "Mimosa", "Mirabella", "Myrtle", "Pansy", "Pearl", "Pedderee", "Peony", "Petrilly", "Poppy", "Portia", "Primula", "Prisca", "Rose", "Ruby", "Seraphina", "Susannah", "Verna", "Viloet"]
 
-    case species
+    case species 
     when 'orc', 'goblin', 'giant', 'troll', 'ogre'
       return orc_m_names.sample if gender == 'male'
       return orc_f_names.sample if gender ==  'female'
@@ -110,32 +110,82 @@ module Generator
     ["orc", 'human', 'elf', 'halfling', 'mermaid', 'nymph', 'leprechaun','goblin','giant','troll','ogre', 'undead'].sample #"werewolf" "centaur", "lizard folk", "", "", "", "", "", "vampire", "", , "", "dwarf", ""].sample
   end
 
-  def generate_bio
+  def generate_bio(first_name='', last_name='', gender="none", age='')
+
+    he_or_she = "They"
+    his_or_her = "their"
+    him_or_her = "they"
+
+    case gender 
+     when "male"
+        he_or_she = "he"
+        his_or_her = "his" 
+        him_or_her = "him"
+     when "female"
+        he_or_she = "she"
+        his_or_her = "her"
+        him_or_her = "her"
+     end 
+
     from, marital_status, food, food_type, realtonship, relationship_type, mood = ""
 
     mood = ["happily", "begrudingly", "reluctantly"].sample
-    food_type = ["loves", "hates", "alergic to", "creator of the", "is partial to a", "addicted to", "makes a mean"].sample
+    food_type = ["loves", "hates", "is alergic to", "is partial to", "addicted to", "makes a mean", "has an insatiable appetite for"].sample
     relationship_type = ["a very close", "a strangely erotic", "an icy", "a happy", "a complicated", "a bad", "a 'special'", "a jovial"].sample
-    marital_status = Faker::Demographic.marital_status #=> "Widowed"
-    food = Faker::Food.dish #=> "Caesar Salad"
+    marital_status = Faker::Demographic.marital_status.downcase #=> "Widowed"
+    food = Faker::Food.dish.downcase #=> "Caesar Salad"
 
     from = generate_place
 
-    num = gen_random_num(5)
-    case num
-    when 1
-      realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
-    when 2
-      realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
-    when 3
-      realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
-    when 4
-      realtonship = Faker::Relationship.in_law #=> "Father-in-law"
-    when 5
-      realtonship = Faker::Relationship.sibling #=> "Sister" or "Brother"
-    end
+     num = gen_random_num(10)
 
-    "Originating from #{from}. #{mood.capitalize} #{marital_status.downcase}. #{food_type.capitalize} #{food}. Has #{relationship_type} relationship with their #{realtonship.downcase}."
+     ##childhood
+
+     case num
+      when (1..7)
+        born = " was born #{["during a terrible storm", "on the longest day of summer", "beneath a blood-moon", "on the ides of march",  "during an earthquake", "into abject poverty", "into extreme wealth", "in the middle or warzone", "in a world where it's everyone for themselves" ].sample} #{age} years ago"
+      when (8..10)
+        born = " was born #{age} years ago"
+      end 
+
+
+    childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village"].sample
+    childhood2 = ["grew up always wanting to be a soldier", "always knew #{he_or_she} was destined for greatness", "had a romantic connection in #{his_or_her} adolescent years, which deeply influenced #{his_or_her} personality"].sample
+
+
+    fact = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age"].shuffle
+    fact1 = fact[0]
+    fact2 = fact[1]
+    fact3 = fact[3]
+
+
+    currently = ["#{he_or_she} hopes to find a place to call home and finally find tranquility #{he_or_she} has never had", "#{he_or_she} is currently still searching for #{his_or_her} true calling", "#{he_or_she} hopes to shed the memories of the past and finally find peace", "is currently searching for a place #{he_or_she} can call home", "#{he_or_she} has sworn to seek vengence on those that have wronged #{him_or_her}", "#{he_or_she} is finally getting around to writing #{his_or_her} first novel", "will seek #{his_or_her} vengece in this life or the next" ].sample
+
+    # num = gen_random_num(5)
+    # case num
+    # when 1
+    #   realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
+    # when 2
+    #   realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
+    # when 3
+    #   realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
+    # when 4
+    #   realtonship = Faker::Relationship.in_law #=> "Father-in-law"
+    # when 5
+    #   
+    # end
+
+    
+    # "#{first_name} #{last_name} is from #{from}. #{he_or_she} is #{mood} #{marital_status.downcase}. #{he_or_she} #{food_type} #{food}. #{he_or_she} has #{relationship_type} relationship with #{his_or_her} #{realtonship.downcase}."
+      if first_name 
+        childhood1 = "#{first_name} was #{childhood1}"
+      else 
+        childhood1.capitalize
+      end 
+
+
+    "#{childhood1}. #{he_or_she.capitalize} #{childhood2}. #{he_or_she.capitalize} #{fact1}, #{fact2} and #{fact3}. #{currently.capitalize}."
+
   end
 
   def generate_place
