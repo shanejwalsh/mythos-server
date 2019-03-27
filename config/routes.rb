@@ -6,6 +6,12 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :create]
 
       post 'characters/clone', to: 'characters#clone' 
+
+      post 'login', to: 'users#login'
+      get 'validate', to: 'users#validate'
+      get '/mycharacters', to: 'users#get_characters'
+
+      #Generate Routes 
       get '/generate/full_character', to: 'generators#full_character'
       get '/generate/first_name', to: 'generators#first_name'
       get '/generate/last_name', to: 'generators#last_name'
