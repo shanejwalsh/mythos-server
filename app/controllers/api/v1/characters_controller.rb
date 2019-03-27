@@ -1,5 +1,7 @@
 class Api::V1::CharactersController < ApplicationController
-    before_action :find_character, only: [:show, :destroy, :update, :clone]
+    include Generator
+    before_action :find_character, only: [:show, :destroy, :update]
+    
 
     def index
         @characters = Character.all
@@ -9,7 +11,6 @@ class Api::V1::CharactersController < ApplicationController
 
     def show
         render json: @character
-
     end
 
     def new
@@ -19,13 +20,14 @@ class Api::V1::CharactersController < ApplicationController
 
     def create
         @character = Character.new
-            @character.update(character_params)
+        @character.update(character_params)
+        @character.update(sprite_data: generate_sprite(@character.species))
 
-            if @character.save 
-             render json: @character  
-            else 
-             render json: {error:"Character cannot be created"}, status: 400
-            end 
+        if @character.save 
+            render json: @character  
+        else 
+            render json: {error:"Character cannot be created"}, status: 400
+        end 
     end 
 
 
