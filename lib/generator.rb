@@ -69,7 +69,7 @@ module Generator
   def generate_alias
     prefix_alias = ["Amber", "Brown", "Cold", "Crazy", "Curly", "Earth", "Far", "Fast", "Fat", "Fire", "Flow", "Forest", "Free", "Glitter", "Good", "Great", "Green", "Hairy", "Honor", "Healthy", "Home", "Hot", "Laughing", "Lightning", "Little", "Many", "Moon", "Nimble", "Plump", "Pretty", "Quick", "Rain", "Road", "Running", "Scatter", "Shadow", "Silver", "Simple", "Sky", "Slow", "Sly", "Smooth", "Spring", "Sprout", "Stout", "Sun", "Swift", "Tall", "Travelling", "Under", "Warm", "Water", "Wet", "Wild"]
     suffix_alias = ["Ale", "Arrow", "Body", "Bones", "Bottom", "Bread", "Brother", "Burrow", "Caller", "Cloak", "Digger", "Drum", "Eye", "Fellow", "Fingers", "Flower", "Foot", "Fox", "Ghost", "Goat", "Gold", "Grass", "Hand", "Head", "Heart", "Hearth", "Hill", "Lady", "Leaf", "Letters", "Maker", "Man", "Map", "Mind", "One", "Pipe", "Shadow", "Shaker", "Sister", "Skin", "Sleep", "Stick", "Stoat", "Swan", ",Talker", "Taunt", "Tender", "Wanderer", "Weed", "Will", "Wind", "Wit", "Wolf"]
-    full_alias = ['Arseface','Chicken Chaser','Deathbringer','Druid','Gladiator','Hood','Liberator','Maleficus','Vile Necromancer','Holy Paladin',"Piemaster",'Lost Pilgrim','Ranger',"Reaper","Runemaster","Sabre","Arrowdodger","Axe-Hands", "Bear-Slayer", "Bloodtusk", "Chief-bane", "Deadeye", "Fire-Caller", "Hammerdeath", "Hammerhand", "Ice-Bringer", "Ironblood", "The Many", "One-Eye", "Strongbow", "Talespinner", "The Axe", "The Bard", "The Beryl-Chested", "The Bold", "The Butcher", "The Cheesemonger", "The Cleaver", "The Corruptor", "The Dark", "The Deceiver", "The Firestarter", "The Gutter-King", "The Gutworm", "The Hungry", "The Impatient", "The Ironfinder", "The Kind", "The Knife", "The Mason", "The Mauler", "The Merry", "The Monster", "The Penitent", "The Proselytizer", "The Recruiter", "The Red", "The Shark", "The Snappy", "The Sot", "The Stewmaster", "The Strong", "The Untamed", "The Tidy Tailor", "Two-Axes", "Trollfeeder"]
+    full_alias = ['Arseface','Chicken Chaser','Deathbringer','Druid','Gladiator','Hood','Liberator','Maleficus','Vile Necromancer','Holy Paladin',"Piemaster",'Lost Pilgrim','Ranger',"Reaper","Runemaster","Sabre","Arrowdodger","Axe-Hands", "Bear-Slayer", "Bloodtusk", "Chief-bane", "Deadeye", "Fire-Caller", "Hammerdeath", "Hammerhand", "Ice-Bringer", "Ironblood", "The Many", "One-Eye", "Strongbow", "Talespinner", "The Axe", "The Bard", "The Beryl-Chested", "The Bold", "The Butcher", "The Cheesemonger", "The Cleaver", "The Corruptor", "The Dark", "The Deceiver", "The Firestarter", "The Gutter-King", "The Gutworm", "The Hungry", "The Impatient", "The Ironfinder", "The Kind", "The Knife", "The Mason", "The Mauler", "The Merry", "The Monster", "The Penitent", "The Proselytizer", "The Recruiter", "The Red", "The Shark", "The Snappy", "The Sot", "The Stewmaster", "The Strong", "The Untamed", "The Tidy Tailor", "Two-Axes", "Trollfeeder", "JJ Rubberlips", "Jeffery Eyeballs", "Chernobyl Chicken"]
     if rand() > 0.5
       return rand()> 0.5 ? "#{prefix_alias.sample} #{suffix_alias.sample}" : "#{prefix_alias.sample}-#{suffix_alias.sample}"
     else 
@@ -142,11 +142,11 @@ module Generator
     relative = gen_random_num(3)
     case relative
     when 1
-      realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
+      relationship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
     when 2
-      realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
+      relationship = Faker::Relationship.spouse #=> "Husband" or "Wife"
     when 3
-      realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
+      relationship = Faker::Relationship.parent #=> "Father" or "Mother"
       
     end
     
@@ -161,7 +161,7 @@ module Generator
       end 
 
 
-    childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village", "was profoundly affected by the death of #{his_or_her} #{relative} when #{he_or_she} was young and was never able to let go if it", "was kidnapped by theives at at a young age "].sample
+    childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village", "was profoundly affected by the death of #{his_or_her} #{relationship.downcase} when #{he_or_she} was young and was never able to let go if it", "was kidnapped by theives at at a young age"].sample
     childhood2 = ["grew up always wanting to be a soldier", "always knew #{he_or_she} was destined for greatness", "had a romantic connection in #{his_or_her} adolescent years, which deeply influenced #{his_or_her} personality"].sample
 
 
