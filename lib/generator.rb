@@ -161,22 +161,6 @@ module Generator
 
     currently = ["#{he_or_she} hopes to find a place to call home and finally find tranquility #{he_or_she} has never had", "#{he_or_she} is currently still searching for #{his_or_her} true calling", "#{he_or_she} hopes to shed the memories of the past and finally find peace", "is currently searching for a place #{he_or_she} can call home", "#{he_or_she} has sworn to seek vengence on those that have wronged #{him_or_her}", "#{he_or_she} is finally getting around to writing #{his_or_her} first novel", "will seek #{his_or_her} vengece in this life or the next" ].sample
 
-    # num = gen_random_num(5)
-    # case num
-    # when 1
-    #   realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
-    # when 2
-    #   realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
-    # when 3
-    #   realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
-    # when 4
-    #   realtonship = Faker::Relationship.in_law #=> "Father-in-law"
-    # when 5
-    #   
-    # end
-
-    
-    # "#{first_name} #{last_name} is from #{from}. #{he_or_she} is #{mood} #{marital_status.downcase}. #{he_or_she} #{food_type} #{food}. #{he_or_she} has #{relationship_type} relationship with #{his_or_her} #{realtonship.downcase}."
       if first_name 
         childhood1 = "#{first_name} was #{childhood1}"
       else 

@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
     def login
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
-        render json: {username: @user.username, token: issue_token({id: @user.id})}
+        render json: {id: @user.id, username: @user.username, token: issue_token({id: @user.id})}
       else
         render json: {error: "Username/password combination invalid."}, status: 401
       end
@@ -35,7 +35,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
     def create
-        byebug
         @user = User.new(user_params)
             if @user.save
              render json: @user  
