@@ -30,16 +30,18 @@ class Api::V1::CharactersController < ApplicationController
         end 
     end 
 
-    def edit 
-    end 
 
+    def create_guest
+
+    end
+    
+    
     def update
          if @character.update(character_params)
              render json: @character  
-            else 
+         else 
              render json: {error:"Character cannot be updated"}, status: 400
-            end 
-        else
+         end
     end
 
 
@@ -47,6 +49,20 @@ class Api::V1::CharactersController < ApplicationController
         @character.destroy
         render json: @character
     end
+
+
+
+    def clone
+        @character_no_id = @character.attributes.select  {|key| key != "id"} 
+        @clone = Character.new(@character_no_id)
+        @clone.user_id = params[:user]
+
+            if @clone.save
+                render json: @clone 
+            else 
+                render json: {error: "Character cannot be cloned"}
+            end 
+    end 
 
 
 

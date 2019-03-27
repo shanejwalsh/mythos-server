@@ -137,10 +137,22 @@ module Generator
 
     from = generate_place
 
-     num = gen_random_num(10)
-
-     ##childhood
-
+    
+    
+    relative = gen_random_num(3)
+    case relative
+    when 1
+      realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
+    when 2
+      realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
+    when 3
+      realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
+      
+    end
+    
+    ##childhood
+    
+    num = gen_random_num(10)
      case num
       when (1..7)
         born = " was born #{["during a terrible storm", "on the longest day of summer", "beneath a blood-moon", "on the ides of march",  "during an earthquake", "into abject poverty", "into extreme wealth", "in the middle or warzone", "in a world where it's everyone for themselves" ].sample} #{age} years ago"
@@ -149,11 +161,11 @@ module Generator
       end 
 
 
-    childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village"].sample
+    childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village", "was profoundly affected by the death of #{his_or_her} #{relative} when #{he_or_she} was young and was never able to let go if it", "was kidnapped by theives at at a young age "].sample
     childhood2 = ["grew up always wanting to be a soldier", "always knew #{he_or_she} was destined for greatness", "had a romantic connection in #{his_or_her} adolescent years, which deeply influenced #{his_or_her} personality"].sample
 
 
-    fact = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age"].shuffle
+    fact = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age", "feels the need for seed", "can take only shit whilst completely naked"].shuffle
     fact1 = fact[0]
     fact2 = fact[1]
     fact3 = fact[3]

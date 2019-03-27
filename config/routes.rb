@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :characters, only: [:index, :show, :new, :create, :destroy, :update]
       resources :users, only: [:index, :create]
 
+      post 'characters/clone', to: 'characters#clone' 
 
       post 'login', to: 'users#login'
       get 'validate', to: 'users#validate'
