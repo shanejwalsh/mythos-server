@@ -137,10 +137,22 @@ module Generator
 
     from = generate_place
 
-     num = gen_random_num(10)
-
-     ##childhood
-
+    
+    
+    relative = gen_random_num(3)
+    case relative
+    when 1
+      realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
+    when 2
+      realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
+    when 3
+      realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
+      
+    end
+    
+    ##childhood
+    
+    num = gen_random_num(10)
      case num
       when (1..7)
         born = " was born #{["during a terrible storm", "on the longest day of summer", "beneath a blood-moon", "on the ides of march",  "during an earthquake", "into abject poverty", "into extreme wealth", "in the middle or warzone", "in a world where it's everyone for themselves" ].sample} #{age} years ago"
@@ -149,7 +161,7 @@ module Generator
       end 
 
 
-    childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village"].sample
+    childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village", "was profoundly affected by the death of #{his_or_her} #{relative} when #{he_or_she} was young and was never able to let go if it", "was kidnapped by theives at at a young age "].sample
     childhood2 = ["grew up always wanting to be a soldier", "always knew #{he_or_she} was destined for greatness", "had a romantic connection in #{his_or_her} adolescent years, which deeply influenced #{his_or_her} personality"].sample
 
 
@@ -161,19 +173,7 @@ module Generator
 
     currently = ["#{he_or_she} hopes to find a place to call home and finally find tranquility #{he_or_she} has never had", "#{he_or_she} is currently still searching for #{his_or_her} true calling", "#{he_or_she} hopes to shed the memories of the past and finally find peace", "is currently searching for a place #{he_or_she} can call home", "#{he_or_she} has sworn to seek vengence on those that have wronged #{him_or_her}", "#{he_or_she} is finally getting around to writing #{his_or_her} first novel", "will seek #{his_or_her} vengece in this life or the next" ].sample
 
-    # num = gen_random_num(5)
-    # case num
-    # when 1
-    #   realtonship = Faker::Relationship.familial #=> "Mother" or "Grandmother"
-    # when 2
-    #   realtonship = Faker::Relationship.spouse #=> "Husband" or "Wife"
-    # when 3
-    #   realtonship = Faker::Relationship.parent #=> "Father" or "Mother"
-    # when 4
-    #   realtonship = Faker::Relationship.in_law #=> "Father-in-law"
-    # when 5
-    #   
-    # end
+ 
 
     
     # "#{first_name} #{last_name} is from #{from}. #{he_or_she} is #{mood} #{marital_status.downcase}. #{he_or_she} #{food_type} #{food}. #{he_or_she} has #{relationship_type} relationship with #{his_or_her} #{realtonship.downcase}."
