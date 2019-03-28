@@ -78,32 +78,12 @@ module Generator
   end
 
   def generate_motto
-    return Faker::GreekPhilosophers.quote #=> "Only the educated are free."
-    # num = gen_random_num(20)
-    # case num 
-    # when (1)
-    #   return Faker::Marketing.buzzwords #=> "rubber meets The road", "sprint to The finish line"
-    # when (2..3)
-    #   return Faker::Books::Dune.saying #=> "You do not beg the sun for mercy."
-    # when (4..5)
-    #   return 
-    # when (6..7)
-    #   return Faker::Games::Dota.quote #=> "Easy now, this stuff is explosive!"
-    # when (8..9)
-    #   return Faker::Games::Fallout.quote #=> "Democracy is non-negotiable"
-    # when (10..11)
-    #   return Faker::Games::HeroesOfTheStorm.quote #=> "MEAT!!!"
-    # when (12..13)
-    #   return Faker::Games::Witcher.quote # => "No Lollygagin'!"
-    # when (14..15)
-    #   return Faker::Games::LeagueOfLegends.quote #=> "Purge the unjust."
-    # when (16..17)
-    #   return Faker::Games::WorldOfWarcraft.quote #=> "These are dark times indeed."
-    # when (18..19)
-    #   return Faker::TvShows::TwinPeaks.quote #=> "The owls are not what they seem."
-    # when (19..20)
-    #   return Faker::TvShows::VentureBros.quote #=> "Revenge like gazpacho soup, is best served cold, precise and merciless."
-    # end
+    mottos = ["We will persevere","Faster, better, stronger","One house, one family","Many skills, many virtues","In ancestral footsteps we tread","Faith grants us strength","Righteous in duty","Love of the South","From the waves we rose","Perseverance conquers all","Progress through wisdom","Honor binds us","Never conquered, always feared","Friends, family, fatherland","None shall pass","Serve and obey","Love of the people, strength of the nation","We were, we are, we will be","Strike swiftly, aim true","Unity brings strength","Faster, better, stronger","Light and law","Reap what you sow","Bound by chains, but now we are free","Sow knowledge, reap wisdom","Dream, hope, aspire","Glory of the West","Freedom restored","Be just and vigilant","Whispers in the wind","God brings salvation","Eternal beauty of the East","With wisdom we conquer","People of nature","Peace, passion, compassion","Fire of our hearts","United we stand, together we stay","For the people, for the realm","Sword or pen, we conquer all","Actions bring results","Alone we shall stand, alone we shall prosper","Don't wake a sleeping lion","Live long and die free","Ever progressing","Fire of our hearts","Trust and loyalty","For king and country we ride","Stand strong, stand tall","Our right, our freedom","Roots of the earth","Peace, progress, prosperity","Trust and loyalty","In unity and freedom","One house, one family","True and sure","Peace, passion, compassion","The first, the true","Eternal beacon of light","Hope, peace, unity","All is good to those of pure hearts","The first, the true","All is good to those of pure hearts","Good life, good death","I will be free","Justice and honor reign","Here to stay","Out of darkness we bring light","Lighting the way","We are always free","Never forget","All for the motherland","From two now as one","Peace, progress, prosperity","Steadfast in duty","Love is life","Protect, serve, progress","By the sword","Never conquered, always feared","Strike swiftly, aim true","Born in freedom, live in freedom, die in freedom","Bound by nothing","Eternal prime","All for the people","Serve and obey","Freedom at last","May all be as one","In spirit and truth","Watchers in the shade","Progress through wisdom","United in strife, together in peace","Reap what you sow","None shall be left behind","Hope, peace, unity","Take what they owe","Whispers in the wind","Pride and honor","Progress through unity","Actions bring results","Faster, better, stronger","Always progress, always move forward","We are and always will be","Strike swiftly, aim true","Glory, pride, honor","Light and law","Faster, better, stronger","Our right, our freedom","United we stand, united we stay","Day or night, we are ready","God is the king, the king is god","Always progress, always move forward","We are and always will be","Strike swiftly, aim true","Glory, pride, honor","Light and law","Faster, better, stronger","Our right, our freedom","United we stand, united we stay","Day or night, we are ready","God is the king, the king is god"]
+    if rand() < 0.9
+      return mottos.sample
+    else 
+      return Faker::GreekPhilosophers.quote #=> "Only the educated are free."
+    end
   end
 
   def generate_species
@@ -135,9 +115,7 @@ module Generator
     marital_status = Faker::Demographic.marital_status.downcase #=> "Widowed"
     food = Faker::Food.dish.downcase #=> "Caesar Salad"
 
-    from = generate_place
-
-    
+    from = generate_place    
     
     relative = gen_random_num(3)
     case relative
@@ -146,12 +124,9 @@ module Generator
     when 2
       relationship = Faker::Relationship.spouse #=> "Husband" or "Wife"
     when 3
-      relationship = Faker::Relationship.parent #=> "Father" or "Mother"
-      
+      relationship = Faker::Relationship.parent #=> "Father" or "Mother"      
     end
-    
-    ##childhood
-    
+
     num = gen_random_num(10)
      case num
       when (1..7)
@@ -160,21 +135,15 @@ module Generator
         born = " was born #{age} years ago"
       end 
 
-
     childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village", "was profoundly affected by the death of #{his_or_her} #{relationship.downcase} when #{he_or_she} was young and was never able to let go if it", "was kidnapped by theives at at a young age"].sample
     childhood2 = ["grew up always wanting to be a soldier", "always knew #{he_or_she} was destined for greatness", "had a romantic connection in #{his_or_her} adolescent years, which deeply influenced #{his_or_her} personality"].sample
-
 
     fact = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age", "feels the need for seed", "can take only shit whilst completely naked"].shuffle
     fact1 = fact[0]
     fact2 = fact[1]
     fact3 = fact[3]
 
-
     currently = ["#{he_or_she} hopes to find a place to call home and finally find tranquility #{he_or_she} has never had", "#{he_or_she} is currently still searching for #{his_or_her} true calling", "#{he_or_she} hopes to shed the memories of the past and finally find peace", "is currently searching for a place #{he_or_she} can call home", "#{he_or_she} has sworn to seek vengence on those that have wronged #{him_or_her}", "#{he_or_she} is finally getting around to writing #{his_or_her} first novel", "will seek #{his_or_her} vengece in this life or the next" ].sample
- 
-
-
 
     "#{childhood1.capitalize}. #{he_or_she.capitalize} #{childhood2}. #{he_or_she.capitalize} #{fact1}, #{fact2} and #{fact3}. #{currently.capitalize}."
 
