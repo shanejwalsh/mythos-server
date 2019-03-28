@@ -1,6 +1,6 @@
 class Api::V1::CharactersController < ApplicationController
     include Generator
-    before_action :find_character, only: [:show, :destroy, :update]
+    before_action :find_character, only: [:show, :destroy, :update, :clone]
     
 
     def index
@@ -30,10 +30,6 @@ class Api::V1::CharactersController < ApplicationController
         end 
     end 
 
-
-    def create_guest
-
-    end
     
     
     def update
@@ -53,15 +49,14 @@ class Api::V1::CharactersController < ApplicationController
 
 
     def clone
-        @character_no_id = @character.attributes.select  {|key| key != "id"} 
+        @character_no_id = @character.attributes.select  {|key| (key != "id" && key != 'created_at' && key != 'updated_at')} 
         @clone = Character.new(@character_no_id)
         @clone.user_id = params[:user]
-
-            if @clone.save
-                render json: @clone 
-            else 
-                render json: {error: "Character cannot be cloned"}
-            end 
+        if @clone.save
+            render json: @clone 
+        else 
+            render json: {error: "Character cannot be cloned"}
+        end 
     end 
 
 
