@@ -23,6 +23,7 @@ class Api::V1::CharactersController < ApplicationController
         @character.update(character_params)
         if(@character.sprite_data === [])
             @character.update(sprite_data: generate_sprite(@character.species))
+        end
 
         if @character.save 
             render json: @character  
