@@ -143,7 +143,7 @@ module Generator
     fact2 = fact[1]
   
     fact_prefix = ['Likes', 'Hates', 'Is partial to', 'Knows way to much about', 'Addicted to', 'Has an irrational fear of']
-    fact_suffix = ['cheese', 'apples', 'poetry', 'dancing', 'climbing', 'other cultures', 'large men', 'salty snacks', 'dogs', 'possums', 'the dutch', 'the landed gentry', 'the queen', 'shaving legs', 'ale', 'swords', 'spears']
+    fact_suffix = ['cheese', 'apples', 'poetry', 'dancing', 'climbing', 'other cultures', 'large men', 'salty snacks', 'dogs', 'possums', 'the dutch', 'the landed gentry', 'the queen', 'shaving legs', 'ale', 'swords', 'spears', 'palindromes', 'the french', 'the germans']
 
     fact3 = fact_prefix.sample + ' ' + fact_suffix.sample
 
