@@ -21,7 +21,8 @@ class Api::V1::CharactersController < ApplicationController
     def create
         @character = Character.new
         @character.update(character_params)
-        @character.update(sprite_data: generate_sprite(@character.species))
+        if(@character.sprite_data === [])
+            @character.update(sprite_data: generate_sprite(@character.species))
 
         if @character.save 
             render json: @character  

@@ -18,6 +18,6 @@ class ApplicationController < ActionController::API
   end
 
   def secret
-    'imasecretshhhhh'
+    ENV['MY_SECRET_KEY']
   end
 end
