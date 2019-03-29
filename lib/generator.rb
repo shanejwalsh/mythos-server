@@ -138,18 +138,18 @@ module Generator
     childhood1 = ["orphaned at an early age, so was forced to fend for #{him_or_her}self", "raised by #{his_or_her} father after #{his_or_her} mother died during child birth", "raised by #{his_or_her} mother after #{his_or_her} father left while #{he_or_she} was still a baby", "was raised working the land in a small village", "was profoundly affected by the death of #{his_or_her} #{relationship.downcase} when #{he_or_she} was young and was never able to let go if it", "was kidnapped by theives at at a young age"].sample
     childhood2 = ["grew up always wanting to be a soldier", "always knew #{he_or_she} was destined for greatness", "had a romantic connection in #{his_or_her} adolescent years, which deeply influenced #{his_or_her} personality"].sample
 
-    fact = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age", "feels the need for seed", 'has a heightened sense of smell'].shuffle
-    fact1 = fact[0]
-    fact2 = fact[1]
+    facts = ["#{food_type} #{food}", "always seems to smell faintly of vegetables", "has an insatiable bloodlust", "never learned how to ride a bicycle", "is cursed with a photographic memory", "is blessed with a photographic memory", "gets nauseated around the smell of bins", "has a strange obsession with the Mel Gibson film 'Signs'", "is a universal blood donor", "is a vegetarian", "defines #{him_or_her}self as pansexual", "enjoys moonlit walks on the beach", "is left handed", "sings in an accapella choir", "loves correcting other people's grammar", "mastered the blade at a younge age", "feels the need for seed", 'has a heightened sense of smell', 'is hungry like the wolf', 'is a travelling bard', 'cannt touch their toes', 'loves a spicy meme', 'prefers spicy food', 'has many allergies', 'was an ugly child', 'always performs under pressure', 'has a very long tongue', 'cannot bend at the knees', 'worships a forbidden god', 'has bleeding gums']
+    fact=facts.sample
+    fact1=facts.sample
   
-    fact_prefix = ['likes', 'hates', 'is partial to', 'knows way to much about', 'addicted to', 'has an irrational fear of']
+    fact_prefix = ['likes', 'hates', 'is partial to', 'knows way too much about', 'addicted to', 'has an irrational fear of']
     fact_suffix = ['cheese', 'apples', 'poetry', 'dancing', 'climbing', 'other cultures', 'large men', 'salty snacks', 'dogs', 'possums', 'the dutch', 'the landed gentry', 'the queen', 'shaving legs', 'ale', 'swords', 'spears', 'palindromes', 'the french', 'the germans']
 
-    fact3 = fact_prefix.sample + ' ' + fact_suffix.sample
+    fact2 = fact_prefix.sample + ' ' + fact_suffix.sample
 
     currently = ["#{he_or_she} hopes to find a place to call home and finally find tranquility #{he_or_she} has never had", "#{he_or_she} is currently still searching for #{his_or_her} true calling", "#{he_or_she} hopes to shed the memories of the past and finally find peace", "is currently searching for a place #{he_or_she} can call home", "#{he_or_she} has sworn to seek vengence on those that have wronged #{him_or_her}", "#{he_or_she} is finally getting around to writing #{his_or_her} first novel", "will seek #{his_or_her} vengece in this life or the next" ].sample
 
-    "#{childhood1.capitalize}. #{he_or_she.capitalize} #{childhood2}. #{he_or_she.capitalize} #{fact1}, #{fact2} and #{fact3}. #{currently.capitalize}."
+    "#{childhood1.capitalize}. #{he_or_she.capitalize} #{childhood2}. #{he_or_she.capitalize} #{fact}, #{fact1} and #{fact2}. #{currently.capitalize}."
 
   end
 
