@@ -5,11 +5,15 @@ class ApplicationController < ActionController::API
 
   def get_current_user
     id = decoded_token['id']
+
     User.find_by(id: id)
   end
 
   def decoded_token
     token = request.headers['Authorization']
+
+    puts "Decoded token: #{token}"
+
     begin
       JWT.decode(token, secret).first
     rescue
@@ -18,6 +22,6 @@ class ApplicationController < ActionController::API
   end
 
   def secret
-    ENV['MY_SECRET_KEY']
+    "ENV['MY_SECRET_KEY']"
   end
 end

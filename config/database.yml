@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: mythos-server_production
-  username: mythos-server
-  password: <%= ENV['MYTHOS-SERVER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
