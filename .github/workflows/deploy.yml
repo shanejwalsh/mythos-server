@@ -8,7 +8,7 @@ on:
 
 env:
   ECR_REPOSITORY: mythos-server
-  AWS_REGION: eu-west-1
+  AWS_REGION: us-east-1
 
 jobs:
   build-and-deploy:

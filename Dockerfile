@@ -23,4 +23,4 @@ ENV GIT_SHA=$GIT_SHA
 EXPOSE 8080
 
 
-CMD bash -c "bin/rails server -b 0.0.0.0 -p ${PORT:-8080}"
+CMD bash -c "bin/rails db:create db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-8080}"
