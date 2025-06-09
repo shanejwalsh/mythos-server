@@ -5,7 +5,6 @@ class ApplicationController < ActionController::API
 
   def get_current_user
     id = decoded_token['id']
-
     User.find_by(id: id)
   end
 
@@ -22,6 +21,6 @@ class ApplicationController < ActionController::API
   end
 
   def secret
-    "ENV['MY_SECRET_KEY']"
+    ENV['JWT_SECRET'] || "dev-secret-key"
   end
 end

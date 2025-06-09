@@ -62,7 +62,7 @@ GEM
     erubi (1.13.1)
     faker (2.22.0)
       i18n (>= 1.8.11, < 2)
-    ffi (1.17.2)
+    ffi (1.16.3)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.7)
@@ -171,6 +171,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   faker (~> 2.18)
+  ffi (< 1.17)
   jwt
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)

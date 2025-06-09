@@ -6,6 +6,8 @@ ruby '2.6.10'
 #Gem to generate random data
 gem 'faker', '~> 2.18'
 
+gem 'ffi', '< 1.17'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use postgresql as the database for Active Record

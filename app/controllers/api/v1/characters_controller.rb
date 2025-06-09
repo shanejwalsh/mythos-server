@@ -1,7 +1,7 @@
 class Api::V1::CharactersController < ApplicationController
     include Generator
     before_action :find_character, only: [:show, :destroy, :update, :clone]
-    
+
 
     def index
         @characters = Character.all
@@ -16,7 +16,7 @@ class Api::V1::CharactersController < ApplicationController
     def new
         @character = Character.new
         render json: @character
-    end 
+    end
 
     def create
         @character = Character.new
@@ -25,21 +25,21 @@ class Api::V1::CharactersController < ApplicationController
             @character.update(sprite_data: generate_sprite(@character.species))
         end
 
-        if @character.save 
-            render json: @character  
-        else 
+        if @character.save
+            render json: @character
+        else
             render json: {error:"Character cannot be created"}, status: 400
-        end 
-    end 
+        end
+    end
 
-    
-    
+
+
     def update
-         if @character.update(character_params)
-             render json: @character  
-         else 
-             render json: {error:"Character cannot be updated"}, status: 400
-         end
+        if @character.update(character_params)
+            render json: @character
+        else
+            render json: {error:"Character cannot be updated"}, status: 400
+        end
     end
 
 
@@ -51,19 +51,19 @@ class Api::V1::CharactersController < ApplicationController
 
 
     def clone
-        @character_no_id = @character.attributes.select  {|key| (key != "id" && key != 'created_at' && key != 'updated_at')} 
+        @character_no_id = @character.attributes.select  {|key| (key != "id" && key != 'created_at' && key != 'updated_at')}
         @clone = Character.new(@character_no_id)
         @clone.user_id = params[:user]
         if @clone.save
-            render json: @clone 
-        else 
+            render json: @clone
+        else
             render json: {error: "Character cannot be cloned"}
-        end 
-    end 
+        end
+    end
 
 
 
-    private 
+    private
 
      def find_character
         @character = Character.find_by(id: params[:id])
@@ -89,5 +89,5 @@ class Api::V1::CharactersController < ApplicationController
             :sprite_data,
             :user_id
         )
-    end 
+    end
 end
