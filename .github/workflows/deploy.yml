@@ -61,6 +61,9 @@ jobs:
           build-args: |
             GIT_SHA=${{ github.sha }}
 
+      - name: Debug EC2 host secret
+        run: echo "🔍 EC2_HOST = ${{ secrets.EC2_HOST }}"
+
       - name: Set up SSH key (with debug)
         run: |
           set -e
