@@ -61,12 +61,22 @@ jobs:
           build-args: |
             GIT_SHA=${{ github.sha }}
 
-      - name: Set up SSH key
+      - name: Set up SSH key (with debug)
         run: |
+          set -e
+          echo "🛠 Creating SSH folder..."
           mkdir -p ~/.ssh
-          printf "%s" "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+
+          echo "🔐 Writing private key..."
+          echo "${{ secrets.EC2_SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+
+          echo "🔒 Securing key file..."
           chmod 600 ~/.ssh/id_rsa
+
+          echo "📡 Scanning EC2 host key..."
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+          echo "✅ SSH setup complete"
 
       - name: Deploy to EC2
         run: |
