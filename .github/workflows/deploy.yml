@@ -50,6 +50,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push Docker image
+        id: build
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -59,6 +60,39 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             GIT_SHA=${{ github.sha }}
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} <<EOF
+            set -e
+
+            echo "Logging in to ECR..."
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
+
+            echo "Pulling latest image..."
+            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/mythos-server:latest
+
+            echo "Stopping previous container if it exists..."
+            docker stop mythos-server || true
+            docker rm mythos-server || true
+
+            echo "Running new container..."
+            docker run -d -p 80:8080 \
+              -e RAILS_ENV=production \
+              -e PORT=8080 \
+              -e JWT_SECRET="${{ secrets.JWT_SECRET }}" \
+              -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+              -e SECRET_KEY_BASE="${{ secrets.SECRET_KEY_BASE }}" \
+              --name mythos-server \
+              ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/mythos-server:latest
+          EOF
 
       - name: Output image digest
         run: echo "Image pushed with digest ${{ steps.build.outputs.digest }}"

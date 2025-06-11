@@ -8,6 +8,11 @@ class Api::V1::CharactersController < ApplicationController
         render json: @characters
     end
 
+    def shane
+        @characters = Character.all
+        render json: @characters
+    end
+
 
     def show
         render json: @character

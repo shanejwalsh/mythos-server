@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
       post 'login', to: 'users#login'
       get 'validate', to: 'users#validate'
+      get 'shane', to: 'characters#shane'
       get '/mycharacters', to: 'users#get_characters'
 
       #Generate Routes
