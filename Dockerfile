@@ -4,9 +4,13 @@ RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
 WORKDIR /app
 
+ENV BUNDLE_PATH="/usr/local/bundle"
+ENV BUNDLE_BIN="/usr/local/bundle/bin"
+ENV PATH="${BUNDLE_BIN}:${PATH}"
+
 RUN gem update --system 3.3.22 && \
     gem install bundler:1.17.3 && \
-    bundle config set --global frozen false
+    bundler --version
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4 --retry 3
