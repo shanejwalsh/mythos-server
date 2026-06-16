@@ -5,9 +5,15 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
+# Allowed origins come from ALLOWED_ORIGINS (comma-separated). Defaults cover the
+# deployed client and local dev. Avoid '*' so the API only answers known frontends.
+allowed_origins = ENV.fetch('ALLOWED_ORIGINS') do
+  'https://mythos-client-production.up.railway.app,http://localhost:3000'
+end.split(',').map(&:strip).reject(&:empty?)
+
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins(*allowed_origins)
 
     resource '*',
       headers: :any,
