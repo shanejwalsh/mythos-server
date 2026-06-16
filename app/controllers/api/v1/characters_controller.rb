@@ -8,11 +8,6 @@ class Api::V1::CharactersController < ApplicationController
         render json: @characters
     end
 
-    def shane
-        @characters = Character.all
-        render json: @characters
-    end
-
 
     def show
         render json: @character
@@ -26,7 +21,7 @@ class Api::V1::CharactersController < ApplicationController
     def create
         @character = Character.new
         @character.update(character_params)
-        if(@character.sprite_data === [])
+        if(@character.sprite_data.length == 0)
             @character.update(sprite_data: generate_sprite(@character.species))
         end
 
