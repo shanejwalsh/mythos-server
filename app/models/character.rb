@@ -1,13 +1,12 @@
 class Character < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
 
   extend Generator
 
-  # Generate an entirely random character
-  def self.build_full_character
+  def self.build_full_character(user = nil)
     new_character = Character.new(generate_full_character)
-    new_character.user_id = 1 #DEV MODE ASSIGN TO DUMMY USER
+    new_character.user = user
     new_character.save
+    new_character
   end
 end
-[]

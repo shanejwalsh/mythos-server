@@ -1,6 +1,6 @@
 class Api::V1::CharactersController < ApplicationController
     include Generator
-    before_action :authenticate_user!, only: [:create, :update, :destroy, :clone]
+    before_action :authenticate_user!, only: [:update, :destroy, :clone]
     before_action :find_character, only: [:show, :destroy, :update, :clone]
     before_action :require_ownership!, only: [:update, :destroy]
 
@@ -22,7 +22,7 @@ class Api::V1::CharactersController < ApplicationController
 
     def create
         @character = Character.new(character_params)
-        @character.user = current_user
+        @character.user = current_user  # nil for guests
         if(@character.sprite_data.blank?)
             @character.sprite_data = generate_sprite(@character.species)
         end

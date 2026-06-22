@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :characters
+  has_many :refresh_tokens, dependent: :destroy
   has_secure_password
-  validates :username, :password, presence: true
-  validates :username, :uniqeness, { case_sensitive: false }
+  validates :username, presence: true
+  validates :username, uniqueness: { case_sensitive: false }
 end
-
