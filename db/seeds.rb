@@ -12,10 +12,8 @@ if User.none?
     {username: '@walsh', password: seed_password}
   ])
 
-  # build x fake characters
-  30.times do
-    Character.build_full_character
-  end
+  guest = User.find_by(username: '@guest')
+  30.times { Character.build_full_character(guest) }
 
   source = ENV.key?('SEED_PASSWORD') ? 'SEED_PASSWORD env var' : "generated value: #{seed_password}"
   puts "Seeded #{User.count} users (password from #{source}) and #{Character.count} characters"

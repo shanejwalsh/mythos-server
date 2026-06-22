@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/health', to: 'health#index'
 
   namespace :api do
     namespace :v1 do
       resources :characters, only: [:index, :show, :new, :create, :destroy, :update]
-      resources :users, only: [:index, :create, :show]
-
+      resources :users, only: [:create, :show]
 
       post 'characters/clone', to: 'characters#clone'
 
       post 'login', to: 'users#login'
+      post 'refresh', to: 'users#refresh'
+      delete 'logout', to: 'users#logout'
       get 'validate', to: 'users#validate'
-      get 'shane', to: 'characters#shane'
       get '/mycharacters', to: 'users#get_characters'
 
       #Generate Routes
