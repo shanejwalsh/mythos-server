@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
   def validate
     @user = current_user
     if @user
-      render json: { id: @user.id, username: @user.username, token: issue_token({ id: @user.id }) }
+      render json: { id: @user.id, username: @user.username, createdAt: @user.created_at, token: issue_token({ id: @user.id }) }
     else
       render json: { error: 'Invalid or expired token.' }, status: :unauthorized
     end
