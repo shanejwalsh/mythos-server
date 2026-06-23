@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   # Access tokens are valid for this long; after that the user must log in again.
-  TOKEN_TTL = 7.days
+  TOKEN_TTL = 15.minutes
 
   def issue_token(payload)
     JWT.encode(payload.merge(exp: TOKEN_TTL.from_now.to_i), secret, 'HS256')
@@ -17,6 +17,11 @@ class ApplicationController < ActionController::API
   def authenticate_user!
     return if current_user
     render json: { error: 'Not authenticated' }, status: :unauthorized
+  end
+
+  def authorize_admin!
+    return if current_user&.admin?
+    render json: { error: 'Forbidden' }, status: :forbidden
   end
 
   private

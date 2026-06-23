@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
 
+  before_action :authenticate_user!, :authorize_admin!, only: [:show]
   before_action :find_user, only: [:show]
 
   def show
