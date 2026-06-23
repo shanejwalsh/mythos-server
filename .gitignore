@@ -19,6 +19,10 @@
 
 .byebug_history
 
+# Ignore the local SQLite databases (dev/test) and their WAL sidecar files.
+/db/*.sqlite3
+/db/*.sqlite3-*
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 .env
