@@ -1,6 +1,6 @@
-FROM ruby:2.6.10
+FROM ruby:4.0.5
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y postgresql-client
 
 WORKDIR /app
 
@@ -8,8 +8,8 @@ ENV BUNDLE_PATH="/usr/local/bundle"
 ENV BUNDLE_BIN="/usr/local/bundle/bin"
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
-RUN gem update --system 3.3.22 && \
-    gem install bundler:1.17.3 && \
+# Match the bundler version pinned in Gemfile.lock (BUNDLED WITH)
+RUN gem install bundler -v 4.0.14 && \
     bundler --version
 
 COPY Gemfile Gemfile.lock ./

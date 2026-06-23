@@ -20,7 +20,7 @@ Bundler.require(*Rails.groups)
 module MythosServer
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 8.1
 
     #handle custom module and auto load it
     config.autoload_paths << "#{Rails.root}/lib"

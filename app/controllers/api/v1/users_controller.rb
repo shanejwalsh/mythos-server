@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:show]
 
   def show
-    render json: @user
+    render json: UserBlueprint.render(@user)
   end
 
   def login
@@ -44,7 +44,7 @@ class Api::V1::UsersController < ApplicationController
   def get_characters
     @user = current_user
     if @user
-      render json: @user.characters
+      render json: CharacterBlueprint.render(@user.characters)
     else
       render json: { error: 'Not a valid user.' }, status: :unauthorized
     end
@@ -53,7 +53,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: @user
+      render json: UserBlueprint.render(@user)
     else
       render json: { error: 'User cannot be created', details: @user.errors.full_messages }, status: :unprocessable_entity
     end

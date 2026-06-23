@@ -7,17 +7,17 @@ class Api::V1::CharactersController < ApplicationController
 
     def index
         @characters = Character.all
-        render json: @characters
+        render json: CharacterBlueprint.render(@characters)
     end
 
 
     def show
-        render json: @character
+        render json: CharacterBlueprint.render(@character)
     end
 
     def new
         @character = Character.new
-        render json: @character
+        render json: CharacterBlueprint.render(@character)
     end
 
     def create
@@ -28,7 +28,7 @@ class Api::V1::CharactersController < ApplicationController
         end
 
         if @character.save
-            render json: @character, status: :created
+            render json: CharacterBlueprint.render(@character), status: :created
         else
             render json: {error:"Character cannot be created"}, status: 400
         end
@@ -38,7 +38,7 @@ class Api::V1::CharactersController < ApplicationController
 
     def update
         if @character.update(character_params)
-            render json: @character
+            render json: CharacterBlueprint.render(@character)
         else
             render json: {error:"Character cannot be updated"}, status: 400
         end
@@ -47,7 +47,7 @@ class Api::V1::CharactersController < ApplicationController
 
     def destroy
         @character.destroy
-        render json: @character
+        render json: CharacterBlueprint.render(@character)
     end
 
 
@@ -57,7 +57,7 @@ class Api::V1::CharactersController < ApplicationController
         @clone = Character.new(attributes)
         @clone.user = current_user
         if @clone.save
-            render json: @clone, status: :created
+            render json: CharacterBlueprint.render(@clone), status: :created
         else
             render json: {error: "Character cannot be cloned"}, status: 400
         end

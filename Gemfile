@@ -1,55 +1,41 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.10'
+ruby '4.0.5'
 
-#Gem to generate random data
-gem 'faker', '~> 2.18'
-
-gem 'ffi', '< 1.17'
+# Gem to generate random data (used at runtime by lib/generator.rb)
+gem 'faker', '~> 3.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 8.1.3'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg', '~> 1.5'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'puma', '~> 6.4'
 # Use ActiveModel has_secure_password & JWT Tokens
-gem 'bcrypt', '~> 3.1.7'
-gem 'jwt'
-gem 'active_model_serializers'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'bcrypt', '~> 3.1'
+gem 'jwt', '~> 2.9'
+# JSON serialization (replaces active_model_serializers)
+gem 'blueprinter', '~> 1.1'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.18', require: false
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS)
+gem 'rack-cors', '~> 2.0'
 
 # Rate limiting
-gem 'rack-attack'
+gem 'rack-attack', '~> 6.7'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Debugger console
+  gem 'debug', '>= 1.0', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'listen', '~> 3.8'
+  gem 'sqlite3', '~> 2.1'
 end
-
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
