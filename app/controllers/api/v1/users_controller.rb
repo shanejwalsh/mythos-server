@@ -10,8 +10,9 @@ class Api::V1::UsersController < ApplicationController
   def login
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
+      @user.refresh_tokens.expired.delete_all
       refresh_token = @user.refresh_tokens.create!
-      render json: { id: @user.id, username: @user.username, createdAt: @user.created_at, token: issue_token({ id: @user.id }), refresh_token: refresh_token.token }
+      render json: { id: @user.id, username: @user.username, createdAt: @user.created_at, token: issue_token({ id: @user.id }), refresh_token: refresh_token.raw_token }
     else
       render json: { error: 'Username/password combination invalid.' }, status: :unauthorized
     end
@@ -27,24 +28,27 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def refresh
-    token = RefreshToken.active.find_by(token: params[:refresh_token])
+    token = RefreshToken.find_active(params[:refresh_token])
     if token
-      render json: { token: issue_token({ id: token.user_id }), refresh_token: token.token }
+      # Rotate: issue a fresh refresh token and invalidate the old one.
+      rotated = token.user.refresh_tokens.create!
+      token.destroy
+      render json: { token: issue_token({ id: rotated.user_id }), refresh_token: rotated.raw_token }
     else
       render json: { error: 'Invalid or expired refresh token.' }, status: :unauthorized
     end
   end
 
   def logout
-    token = RefreshToken.find_by(token: params[:refresh_token])
-    token&.destroy
+    raw = params[:refresh_token]
+    RefreshToken.find_by(token: RefreshToken.digest(raw))&.destroy if raw.present?
     render json: { message: 'Logged out successfully.' }
   end
 
   def get_characters
     @user = current_user
     if @user
-      render json: CharacterBlueprint.render(@user.characters)
+      render json: CharacterBlueprint.render(@user.characters.includes(:user))
     else
       render json: { error: 'Not a valid user.' }, status: :unauthorized
     end
@@ -62,7 +66,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.expect(user: [:username, :password])
   end
 
   def find_user

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :characters, only: [:index, :show, :new, :create, :destroy, :update]
+      resources :characters, only: [:index, :show, :create, :destroy, :update]
       resources :users, only: [:create, :show]
 
       post 'characters/clone', to: 'characters#clone'

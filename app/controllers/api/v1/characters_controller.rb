@@ -6,17 +6,12 @@ class Api::V1::CharactersController < ApplicationController
 
 
     def index
-        @characters = Character.all
+        @characters = Character.includes(:user)
         render json: CharacterBlueprint.render(@characters)
     end
 
 
     def show
-        render json: CharacterBlueprint.render(@character)
-    end
-
-    def new
-        @character = Character.new
         render json: CharacterBlueprint.render(@character)
     end
 
@@ -78,21 +73,23 @@ class Api::V1::CharactersController < ApplicationController
     end
 
     def character_params
-        params.require(:character).permit(
-            :first_name,
-            :last_name,
-            :alias,
-            :motto,
-            :species,
-            :bio,
-            :alignment,
-            :age,
-            :status,
-            :gender,
-            :traits_positive,
-            :traits_negative,
-            :feats,
-            :sprite_data
+        params.expect(
+            character: [
+                :first_name,
+                :last_name,
+                :alias,
+                :motto,
+                :species,
+                :bio,
+                :alignment,
+                :age,
+                :status,
+                :gender,
+                :traits_positive,
+                :traits_negative,
+                :feats,
+                :sprite_data
+            ]
         )
     end
 end

@@ -1,6 +1,6 @@
 class Rack::Attack
   throttle('login', limit: 5, period: 60) do |req|
-    req.ip if req.path == '/api/v1/users/login' && req.post?
+    req.ip if req.path == '/api/v1/login' && req.post?
   end
 
   throttle('signup', limit: 3, period: 60) do |req|
@@ -8,7 +8,7 @@ class Rack::Attack
   end
 
   throttle('refresh', limit: 10, period: 60) do |req|
-    req.ip if req.path == '/api/v1/users/refresh' && req.post?
+    req.ip if req.path == '/api/v1/refresh' && req.post?
   end
 
   self.throttled_responder = lambda do |_env|
