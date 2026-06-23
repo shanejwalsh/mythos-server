@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_27_092652) do
+ActiveRecord::Schema.define(version: 2026_06_23_120000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +38,22 @@ ActiveRecord::Schema.define(version: 2019_03_27_092652) do
     t.boolean "alive", default: true
   end
 
+  create_table "refresh_tokens", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
   end
 
 end

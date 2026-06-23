@@ -9,7 +9,7 @@ if User.none?
   User.create!([
     {username: '@guest', password: seed_password},
     {username: '@camacho', password: seed_password},
-    {username: '@walsh', password: seed_password}
+    {username: '@walsh', password: seed_password, admin: true}
   ])
 
   guest = User.find_by(username: '@guest')
